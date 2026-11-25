@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Katalogas | Knygų suvestinė</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <h1>Knygų katalogas</h1>
+
+    <form class="paieska" method="get" action="/katalogas">
+      <div class="laukas">
+        <label for="pavadinimas">Pavadinimas</label>
+        <input type="text" id="pavadinimas" name="pavadinimas" value="<%= filtrai.pavadinimas %>">
+      </div>
+      <div class="laukas">
+        <label for="autorius">Autorius</label>
+        <input type="text" id="autorius" name="autorius" value="<%= filtrai.autorius %>">
+      </div>
+      <div class="laukas">
+        <label for="zanroId">Žanras</label>
+        <select id="zanroId" name="zanroId">
+          <option value="">Visi žanrai</option>
+          <% zanrai.forEach(function(z) { %>
+            <option value="<%= z.zanro_id %>" <%= filtrai.zanroId === z.zanro_id ? 'selected' : '' %>><%= z.zanro_pavadinimas %></option>
+          <% }); %>
+        </select>
+      </div>
+      <div class="laukas">
+        <label for="metaiNuo">Metai nuo</label>
+        <input type="number" id="metaiNuo" name="metaiNuo" value="<%= filtrai.metaiNuo %>">
+      </div>
+      <div class="laukas">
+        <label for="metaiIki">Metai iki</label>
+        <input type="number" id="metaiIki" name="metaiIki" value="<%= filtrai.metaiIki %>">
+      </div>
+      <div class="veiksmai">
+        <button type="submit" class="mygtukas">Ieškoti</button>
+        <a href="/katalogas">Išvalyti</a>
+      </div>
+    </form>
+
+    <p class="rezultatu-kiekis">Rasta knygų: <%= knygos.length %></p>
+
+    <% if (knygos.length === 0) { %>
+      <p>Pagal pasirinktus kriterijus knygų nerasta.</p>
+    <% } else { %>
+      <div class="kortelės">
+        <% knygos.forEach(function(k) { %>
+          <article class="kortelė">
+            <h2><%= k.pavadinimas %></h2>
+            <p><%= k.autoriaus_vardas %> <%= k.autoriaus_pavarde %></p>
+            <p>Leidimo metai: <%= k.leidimo_metai %> | <%= k.zanro_pavadinimas %></p>
+            <p class="busena <%= k.prieinama ? 'prieinama' : 'paskolinta' %>"><%= k.prieinama ? 'Prieinama' : 'Paskolinta' %></p>
+          </article>
+        <% }); %>
+      </div>
+    <% } %>
+  </main>
+  <%- include('partials/footer') %>
+</body>
+</html>
