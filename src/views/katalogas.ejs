@@ -51,7 +51,7 @@
       <div class="kortelės">
         <% knygos.forEach(function(k) { %>
           <article class="kortelė">
-            <h2><%= k.pavadinimas %></h2>
+            <h2><a href="/knyga/<%= k.knygos_id %>"><%= k.pavadinimas %></a></h2>
             <p><%= k.autoriaus_vardas %> <%= k.autoriaus_pavarde %></p>
             <p>Leidimo metai: <%= k.leidimo_metai %> | <%= k.zanro_pavadinimas %></p>
             <p class="busena <%= k.prieinama ? 'prieinama' : 'paskolinta' %>"><%= k.prieinama ? 'Prieinama' : 'Paskolinta' %></p>

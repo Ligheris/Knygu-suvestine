@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= knyga.pavadinimas %> | Knygų suvestinė</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <p><a href="/katalogas">← Atgal į katalogą</a></p>
+    <h1><%= knyga.pavadinimas %></h1>
+    <dl class="duomenys">
+      <dt>Autorius</dt>
+      <dd><%= knyga.autoriaus_vardas %> <%= knyga.autoriaus_pavarde %></dd>
+      <dt>Žanras</dt>
+      <dd><%= knyga.zanro_pavadinimas %></dd>
+      <dt>Leidimo metai</dt>
+      <dd><%= knyga.leidimo_metai %></dd>
+      <dt>ISBN</dt>
+      <dd><%= knyga.ISBN %></dd>
+      <dt>Būsena</dt>
+      <dd class="busena <%= knyga.prieinama ? 'prieinama' : 'paskolinta' %>"><%= knyga.prieinama ? 'Prieinama' : 'Paskolinta' %></dd>
+    </dl>
+  </main>
+  <%- include('partials/footer') %>
+</body>
+</html>

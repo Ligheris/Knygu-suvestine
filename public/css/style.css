@@ -103,10 +103,24 @@ nav a { margin-right: 1rem; }
 .busena.prieinama { color: var(--prieinama); }
 .busena.paskolinta { color: var(--paskolinta); }
 
+.duomenys {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.25rem 1rem;
+  background: var(--kortele);
+  border: 1px solid var(--linija);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.duomenys dt { font-weight: 600; }
+.duomenys dd { margin: 0 0 0.5rem; }
+
 @media (min-width: 600px) {
   .paieska { grid-template-columns: repeat(2, 1fr); }
   .veiksmai { grid-column: 1 / -1; }
   .kortelės { grid-template-columns: repeat(2, 1fr); }
+  .duomenys { grid-template-columns: 12rem 1fr; }
+  .duomenys dd { margin: 0; }
 }
 
 @media (min-width: 900px) {

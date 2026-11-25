@@ -31,6 +31,19 @@ app.get('/katalogas', (req, res) => {
   });
 });
 
+app.get('/knyga/:id', (req, res) => {
+  const id = Number.parseInt(req.params.id, 10);
+  const knyga = Number.isInteger(id) ? books.getBookById(id) : null;
+
+  if (!knyga) {
+    return res.status(404).render('klaida', {
+      pavadinimas: 'Knyga nerasta',
+      zinute: 'Tokios knygos kataloge nėra.'
+    });
+  }
+  res.render('knyga', { knyga });
+});
+
 app.listen(PORT, () => {
   console.log(`Serveris veikia: http://localhost:${PORT}`);
 });
